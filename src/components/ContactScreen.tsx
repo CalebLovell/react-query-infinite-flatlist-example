@@ -5,11 +5,11 @@ import { Alert, StyleSheet, Text, View } from 'react-native'
 
 import { ColorScheme } from '../utils/ColorScheme'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { useDeleteContacts } from '../hooks/useDeleteContacts'
+import { useDeleteContact } from '../hooks/useDeleteContact'
 
 export const ContactScreen = ({ route, navigation }) => {
 	const { contact }: { contact: Contacts.Contact } = route.params
-	const { mutate } = useDeleteContacts()
+	const { mutate } = useDeleteContact()
 
 	const deleteContact = React.useCallback(() => {
 		Alert.alert('Are you sure?', 'This really will delete the contact from your phone forever!!', [

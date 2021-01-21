@@ -12,7 +12,7 @@ type ContactsQueryPage = {
 	pageParam: number
 }
 
-export const useDeleteContacts = () => {
+export const useDeleteContact = () => {
 	const queryClient = useQueryClient()
 	return useMutation(id => deleteContact(id), {
 		onMutate: async (deletedId: string) => {
