@@ -12,7 +12,7 @@ export const ContactsList = () => {
 
 	React.useEffect(() => {
 		const allPagesArray = []
-		data ? data.pages.forEach(x => allPagesArray.push(x.data)) : null
+		data?.pages ? data.pages.forEach(x => allPagesArray.push(x.data)) : null
 		setContacts(allPagesArray.flat())
 	}, [data])
 

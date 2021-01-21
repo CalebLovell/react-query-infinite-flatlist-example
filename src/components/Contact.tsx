@@ -16,7 +16,7 @@ export const Contact: React.FC<Props> = ({ contact }) => {
 	const navigation = useNavigation()
 
 	const onPress = () => {
-		navigation.navigate('Contact', { contact })
+		navigation.navigate('Contact', { id: contact.id })
 	}
 
 	return (
