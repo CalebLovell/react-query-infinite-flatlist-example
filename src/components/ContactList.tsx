@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
+import { ColorScheme } from '../utils/ColorScheme'
 import { Contact } from './Contact'
 import { useContacts } from '../hooks/useContacts'
 
@@ -30,8 +31,7 @@ export const ContactsList = () => {
 						onRefresh={refetch}
 						refreshing={isLoading}
 						progressViewOffset={100}
-						onEndReached={fetchNextPage}
-						onEndReachedThreshold={0.7}
+						onEndReached={() => fetchNextPage()}
 					/>
 				)}
 			</View>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		paddingBottom: 8,
-		backgroundColor: '#f1faee',
+		backgroundColor: ColorScheme.background,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

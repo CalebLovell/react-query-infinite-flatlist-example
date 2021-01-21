@@ -4,6 +4,7 @@ import { ActivityIndicator, StatusBar } from 'react-native'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { ColorScheme } from './src/utils/ColorScheme'
+import { ContactScreen } from './src/components/ContactScreen'
 import { ContactsList } from './src/components/ContactList'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { NavigationContainer } from '@react-navigation/native'
@@ -78,6 +79,7 @@ const ContactsStack = () => {
 				headerRight: () => <GlobalLoadingIndicator />,
 			}}>
 			<Stack.Screen name='Contact List' component={ContactsList} />
+			<Stack.Screen name='Contact' component={ContactScreen} />
 		</Stack.Navigator>
 	)
 }
