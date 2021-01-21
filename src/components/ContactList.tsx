@@ -1,12 +1,12 @@
 import * as React from 'react'
 
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
 import { Contact } from './Contact'
 import { useContacts } from '../hooks/useContacts'
 
 export const ContactsList = () => {
-	const { status, data, error, isLoading, isFetching, refetch, fetchNextPage } = useContacts()
+	const { status, data, error, isLoading, refetch, fetchNextPage } = useContacts()
 	const [contacts, setContacts] = React.useState([])
 
 	React.useEffect(() => {
@@ -16,10 +16,8 @@ export const ContactsList = () => {
 	}, [data])
 
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<View style={{ width: '100%' }}>
-				<Text style={{ marginTop: 20 }}>{isFetching ? 'Updating...' : ''}</Text>
-				<Text>Here's ur contacts: </Text>
 				{status === 'loading' ? (
 					<Text>Loading...</Text>
 				) : status === 'error' ? (
@@ -37,15 +35,15 @@ export const ContactsList = () => {
 					/>
 				)}
 			</View>
-		</View>
+		</SafeAreaView>
 	)
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		paddingVertical: 20,
-		backgroundColor: '#fff',
+		paddingBottom: 8,
+		backgroundColor: '#f1faee',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

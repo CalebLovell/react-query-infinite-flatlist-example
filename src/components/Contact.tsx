@@ -2,38 +2,24 @@ import * as React from 'react'
 
 import { StyleSheet, Text, View } from 'react-native'
 
+import { ColorScheme } from '../utils/ColorScheme'
+
 export const Contact = ({ contact }) => {
 	return (
 		<View style={styles.contact}>
-			<Text>{contact.name}</Text>
+			<Text style={styles.text}>{contact.name}</Text>
 		</View>
 	)
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		paddingVertical: 20,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
 	contact: {
-		backgroundColor: '#f9c2ff',
-		paddingHorizontal: 10,
+		backgroundColor: ColorScheme.primary,
 		paddingVertical: 20,
-		marginVertical: 4,
+		marginBottom: 4,
 	},
-	sectionHeader: {
-		height: 30,
-		flexDirection: 'row',
-		alignItems: 'center',
-		padding: 10,
-	},
-	sectionHeaderText: {
-		fontWeight: 'bold',
-		textAlign: 'center',
-		width: 30,
-		height: 15,
+	text: {
+		marginLeft: 10,
+		color: ColorScheme.secondary,
 	},
 })
