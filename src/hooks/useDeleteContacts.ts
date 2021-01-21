@@ -3,8 +3,8 @@ import * as Contacts from 'expo-contacts'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 
 const deleteContact = async (id: string) => {
-	// const { deletedId } = await Contacts.removeContactAsync(id)
-	return id
+	const deletedId = await Contacts.removeContactAsync(id)
+	return deletedId
 }
 
 type ContactsQueryPage = {
@@ -12,7 +12,6 @@ type ContactsQueryPage = {
 	pageParam: number
 }
 
-// Is this totally insane or actually correct...?
 export const useDeleteContacts = () => {
 	const queryClient = useQueryClient()
 	return useMutation(id => deleteContact(id), {
