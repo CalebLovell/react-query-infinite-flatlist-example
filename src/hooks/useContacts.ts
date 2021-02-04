@@ -1,5 +1,6 @@
 import * as Contacts from 'expo-contacts'
 
+import { ContactsQueryPage } from '../utils/types'
 import { useInfiniteQuery } from 'react-query'
 
 const getContacts = async ({ pageParam = 0 }) => {
@@ -12,7 +13,7 @@ const getContacts = async ({ pageParam = 0 }) => {
 }
 
 export const useContacts = () => {
-	return useInfiniteQuery('contacts', getContacts, {
+	return useInfiniteQuery<ContactsQueryPage, Error>('contacts', getContacts, {
 		getNextPageParam: lastPage => lastPage.pageParam + 10,
 		onError: (error: Error) => console.log(error),
 	})

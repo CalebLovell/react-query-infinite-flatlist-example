@@ -2,10 +2,7 @@ import * as Contacts from 'expo-contacts'
 
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 
-type ContactsQueryPage = {
-	data: Contacts.Contact[]
-	pageParam: number
-}
+import { ContactsQueryPage } from '../utils/types'
 
 const deleteContact = async (id: string) => {
 	const deletedId = await Contacts.removeContactAsync(id)
