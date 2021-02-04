@@ -4,11 +4,11 @@ import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
 import { ColorScheme } from '../utils/ColorScheme'
 import { Contact } from './Contact'
-import { useContacts } from '../hooks/useContacts'
+import { useInfiniteContacts } from '../hooks/useInfiniteContacts'
 
 export const ContactsScreen = () => {
 	// Fetch paginated Contacts
-	const { status, data, error, isLoading, refetch, fetchNextPage } = useContacts()
+	const { status, data, error, isLoading, refetch, fetchNextPage } = useInfiniteContacts()
 	// Add local contacts holder to restructure data for a Flatlist
 	const [contacts, setContacts] = React.useState([])
 
