@@ -14,6 +14,6 @@ const getContacts = async ({ pageParam = 0 }) => {
 export const useContacts = () => {
 	return useInfiniteQuery('contacts', getContacts, {
 		getNextPageParam: lastPage => lastPage.pageParam + 10,
-		onError: error => console.log(error),
+		onError: (error: Error) => console.log(error),
 	})
 }

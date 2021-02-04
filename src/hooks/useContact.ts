@@ -9,6 +9,6 @@ const getContact = async (id: string) => {
 
 export const useContact = (id: string) => {
 	return useQuery(['contact', id], () => getContact(id), {
-		onError: error => console.log(error),
+		onError: (error: Error) => console.log(error),
 	})
 }
