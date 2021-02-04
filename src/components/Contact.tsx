@@ -8,13 +8,14 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 
-interface Props {
+type Props = {
 	contact: Contacts.Contact
 }
 
 export const Contact: React.FC<Props> = ({ contact }) => {
 	const navigation = useNavigation()
 
+	// React Navigation pattern for navigating to a new screen and data params
 	const onPress = () => {
 		navigation.navigate('Contact', { id: contact.id })
 	}

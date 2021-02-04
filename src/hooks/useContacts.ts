@@ -2,7 +2,8 @@ import * as Contacts from 'expo-contacts'
 
 import { useInfiniteQuery } from 'react-query'
 
-export const getContacts = async ({ pageParam = 0 }) => {
+const getContacts = async ({ pageParam = 0 }) => {
+	// Make sure the data is structured correctly with data + pageParam
 	const { data } = await Contacts.getContactsAsync({
 		pageOffset: pageParam,
 		pageSize: 10,
@@ -13,6 +14,6 @@ export const getContacts = async ({ pageParam = 0 }) => {
 export const useContacts = () => {
 	return useInfiniteQuery('contacts', getContacts, {
 		getNextPageParam: lastPage => lastPage.pageParam + 10,
-		onError: (error: Error) => console.log(error),
+		onError: error => console.log(error),
 	})
 }

@@ -2,14 +2,14 @@ import * as Contacts from 'expo-contacts'
 
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 
-const deleteContact = async (id: string) => {
-	const deletedId = await Contacts.removeContactAsync(id)
-	return deletedId
-}
-
 type ContactsQueryPage = {
 	data: Contacts.Contact[]
 	pageParam: number
+}
+
+const deleteContact = async (id: string) => {
+	const deletedId = await Contacts.removeContactAsync(id)
+	return deletedId
 }
 
 export const useDeleteContact = () => {
@@ -21,16 +21,17 @@ export const useDeleteContact = () => {
 			const previousContacts = queryClient.getQueryData<InfiniteData<ContactsQueryPage>>('contacts')
 			// If it exists...
 			if (previousContacts) {
-				// Create a new placeholder array for updated pages
+				// Create a placeholder array for updated pages
 				const newPageArray: ContactsQueryPage[] = []
 				// Loop through existing pages
 				previousContacts?.pages.forEach(page => {
 					// Filter out the deleted id
 					const newDataArray = page.data.filter(contact => contact.id !== deletedId)
-					// Add the filtered array along with unaltered pageParam to the newPageArray
+					// Add the filtered array along with the unchanged pageParam to the newPageArray
 					newPageArray.push({ data: newDataArray, pageParam: page.pageParam })
 				})
 				// Updated pages without filtered value
+				// Make sure the data structure is correct
 				queryClient.setQueryData('contacts', {
 					...previousContacts,
 					pages: newPageArray,
@@ -41,8 +42,8 @@ export const useDeleteContact = () => {
 		onError: (error: Error, _, context) => {
 			if (context?.previousContacts) {
 				queryClient.setQueryData('contacts', context.previousContacts)
+				console.log(error)
 			}
-			console.log(error)
 		},
 		onSettled: () => {
 			queryClient.invalidateQueries('contacts')

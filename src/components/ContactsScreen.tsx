@@ -6,10 +6,13 @@ import { ColorScheme } from '../utils/ColorScheme'
 import { Contact } from './Contact'
 import { useContacts } from '../hooks/useContacts'
 
-export const ContactsList = () => {
+export const ContactsScreen = () => {
+	// Fetch paginated Contacts
 	const { status, data, error, isLoading, refetch, fetchNextPage } = useContacts()
+	// Add local contacts holder to restructure data for a Flatlist
 	const [contacts, setContacts] = React.useState([])
 
+	// This useEffect listens to the data, and reformats it on change
 	React.useEffect(() => {
 		const allPagesArray = []
 		data?.pages ? data.pages.forEach(x => allPagesArray.push(x.data)) : null

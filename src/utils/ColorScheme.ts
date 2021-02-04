@@ -1,6 +1,6 @@
 export const ColorScheme = {
 	background: '#F1FAEE',
 	primary: '#A8DADC',
-	secondary: 'black',
+	secondary: '#000000',
 	accent: '#E63946',
 }
