@@ -25,7 +25,7 @@ export const ContactScreen: React.FC<{ route: any; navigation: any }> = ({ route
 				style: 'cancel',
 			},
 			{
-				text: 'Delete It Forever!',
+				text: 'Delete it forever!',
 				onPress: () => {
 					if (contact) {
 						// Delete contact
@@ -54,7 +54,11 @@ export const ContactScreen: React.FC<{ route: any; navigation: any }> = ({ route
 
 	return (
 		<SafeAreaView style={styles.outerContainer}>
-			<ScrollView contentContainerStyle={styles.innerContainer} refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetch} />}>
+			<ScrollView
+				contentContainerStyle={{ alignItems: 'center' }}
+				style={styles.innerContainer}
+				refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetch} />}>
+				<Text style={[styles.text, { marginTop: 0, marginBottom: 8 }]}>Pull down to refresh data</Text>
 				{contact?.image?.uri ? (
 					<Image style={styles.image} source={{ uri: contact?.image?.uri }} />
 				) : (
@@ -78,7 +82,7 @@ export const ContactScreen: React.FC<{ route: any; navigation: any }> = ({ route
 						{x?.email}
 					</Text>
 				))}
-				<MUIcon name='trash' size={32} color={ColorScheme.accent} onPress={() => deleteContact()} />
+				<IonIcon name='trash' size={32} color={ColorScheme.accent} onPress={deleteContact} style={{ marginTop: 8 }} />
 			</ScrollView>
 		</SafeAreaView>
 	)
@@ -91,8 +95,8 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	innerContainer: {
-		marginTop: 50,
-		alignItems: 'center',
+		width: '100%',
+		paddingTop: 30,
 		textAlign: 'center',
 	},
 	image: {

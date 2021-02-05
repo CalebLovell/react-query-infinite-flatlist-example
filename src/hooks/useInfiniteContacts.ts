@@ -26,5 +26,6 @@ export const useInfiniteContacts = () => {
 		},
 		getNextPageParam: lastPage => lastPage.pageParam + 10,
 		onError: (error: Error) => console.log(error),
+		staleTime: 1000 * 60 * 60,
 	})
 }

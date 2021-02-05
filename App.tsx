@@ -6,7 +6,6 @@ import { ColorScheme } from './src/utils/ColorScheme'
 import { ContactScreen } from './src/components/ContactScreen'
 import { ContactsScreen } from './src/components/ContactsScreen'
 import IonIcon from 'react-native-vector-icons/Ionicons'
-import MUIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -24,8 +23,6 @@ const queryClient = new QueryClient({
 	},
 })
 
-// I'm using React Native Navigation with 2 identical ContactsStacks
-// So you can see syncing across components when using React Query
 const Stack = createStackNavigator()
 const BottomTabs = createBottomTabNavigator()
 
@@ -47,13 +44,6 @@ export default function App() {
 					}}>
 					<BottomTabs.Screen
 						name='Contacts_A'
-						component={ContactsStack}
-						options={{
-							tabBarIcon: ({ color }) => <IonIcon name='body' size={32} color={color} />,
-						}}
-					/>
-					<BottomTabs.Screen
-						name='Contacts_B'
 						component={ContactsStack}
 						options={{
 							tabBarIcon: ({ color }) => <IonIcon name='body' size={32} color={color} />,
@@ -87,9 +77,11 @@ const ContactsStack = () => {
 				},
 				headerBackTitleVisible: false,
 				headerRightContainerStyle: {
-					marginRight: 10,
+					marginRight: 6,
 				},
-				headerRight: () => <MUIcon name='account-multiple-remove' size={32} color={ColorScheme.secondary} onPress={() => null} />,
+				headerLeftContainerStyle: {
+					marginLeft: 6,
+				},
 			}}>
 			<Stack.Screen name='Contacts' component={ContactsScreen} />
 			<Stack.Screen name='Contact' component={ContactScreen} />
