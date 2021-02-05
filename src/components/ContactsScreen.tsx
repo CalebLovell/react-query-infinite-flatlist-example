@@ -19,7 +19,7 @@ export const ContactsScreen = () => {
 					<Text>{error?.message}</Text>
 				) : (
 					<FlatList
-						data={data.contacts}
+						data={data?.contacts}
 						keyExtractor={item => item.id}
 						renderItem={({ item }) => <Contact contact={item} />}
 						onRefresh={refetch}
