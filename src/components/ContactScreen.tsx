@@ -50,7 +50,7 @@ export const ContactScreen: React.FC<{ route: any; navigation: any }> = ({ route
 				<MUIcon name='account-edit' size={32} color={ColorScheme.secondary} onPress={() => editContact()} style={{ paddingBottom: 1 }} />
 			),
 		})
-	}, [deleteContact, editContact, mutate, navigation])
+	}, [editContact, navigation])
 
 	return (
 		<SafeAreaView style={styles.outerContainer}>
@@ -78,6 +78,7 @@ export const ContactScreen: React.FC<{ route: any; navigation: any }> = ({ route
 						{x?.email}
 					</Text>
 				))}
+				<MUIcon name='trash' size={32} color={ColorScheme.accent} onPress={() => deleteContact()} />
 			</ScrollView>
 		</SafeAreaView>
 	)

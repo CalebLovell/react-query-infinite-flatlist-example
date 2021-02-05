@@ -1,15 +1,10 @@
 import * as Contacts from 'expo-contacts'
 
+import { ContactsArray, Page } from '../utils/Types'
+
 import { useInfiniteQuery } from 'react-query'
 
-type Page = Contacts.Contact[]
-
-type PaginationResponse = {
-	page: Page
-	pageParam: number
-}
-
-const getPaginatedContacts = async ({ pageParam = 0 }): Promise<PaginationResponse> => {
+const getPaginatedContacts = async ({ pageParam = 0 }): Promise<Page> => {
 	const { data: page } = await Contacts.getContactsAsync({
 		pageOffset: pageParam,
 		pageSize: 10,
@@ -20,8 +15,8 @@ const getPaginatedContacts = async ({ pageParam = 0 }): Promise<PaginationRespon
 export const useInfiniteContacts = () => {
 	return useInfiniteQuery('contacts', getPaginatedContacts, {
 		select: data => {
-			const allPagesArray: Page[] = []
-			data?.pages ? data.pages.forEach(x => allPagesArray.push(x.page)) : null
+			const allPagesArray: ContactsArray[] = []
+			data?.pages ? data.pages.forEach(contactsArray => allPagesArray.push(contactsArray.page)) : null
 			const flatContacts = allPagesArray.flat()
 			return {
 				pages: data.pages,
