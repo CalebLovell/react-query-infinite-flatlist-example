@@ -11,19 +11,20 @@ export const ContactsScreen = () => {
 	const { status, data, error, isLoading, refetch, fetchNextPage } = useInfiniteContacts()
 	// Add local contacts holder to restructure data for a Flatlist
 	const [contacts, setContacts] = React.useState([])
+	// Mounted check to prevent React warning about attempting
+	// to perform a React state update on an unmounted component
+	const mountedRef = React.useRef(false)
 
 	// This useEffect listens to the data, and reformats it on change
 	React.useEffect(() => {
-		// Mounted check to prevent React warning about attempting
-		// to perform a React state update on an unmounted component
-		let mounted = true
-		if (mounted) {
+		mountedRef.current = true
+		if (mountedRef.current) {
 			const allPagesArray = []
 			data?.pages ? data.pages.forEach(x => allPagesArray.push(x.data)) : null
 			setContacts(allPagesArray.flat())
 		}
 		return () => {
-			mounted = false
+			mountedRef.current = false
 		}
 	}, [data])
 
