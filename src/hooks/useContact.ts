@@ -8,7 +8,7 @@ const getContact = async (id: string) => {
 }
 
 export const useContact = (id: string) => {
-	return useQuery<Contacts.Contact, Error>(['contact', id], () => getContact(id), {
+	return useQuery<Contacts.Contact | undefined, Error>(['contact', id], () => getContact(id), {
 		onError: (error: Error) => console.log(error),
 	})
 }

@@ -1,7 +1,7 @@
 {
 	"expo": {
-		"name": "react-query-CRUD-example",
-		"slug": "react-query-CRUD-example",
+		"name": "react-query-infinite-flatlist-example",
+		"slug": "react-query-infinite-flatlist-example",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",

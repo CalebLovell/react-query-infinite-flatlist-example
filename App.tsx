@@ -1,25 +1,25 @@
 import * as React from 'react'
 
-import { ActivityIndicator, StatusBar } from 'react-native'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { ColorScheme } from './src/utils/ColorScheme'
 import { ContactScreen } from './src/components/ContactScreen'
 import { ContactsScreen } from './src/components/ContactsScreen'
-import Icon from 'react-native-vector-icons/Ionicons'
+import IonIcon from 'react-native-vector-icons/Ionicons'
+import MUIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { NavigationContainer } from '@react-navigation/native'
+import { StatusBar } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
-import { useIsFetching } from 'react-query'
 
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
 			staleTime: 1000 * 60 * 60 * 24,
-			onError: (error: Error) => console.log(error),
+			onError: error => console.log(error),
 		},
 		mutations: {
-			onError: (error: Error) => console.log(error),
+			onError: error => console.log(error),
 		},
 	},
 })
@@ -49,14 +49,14 @@ export default function App() {
 						name='Contacts_A'
 						component={ContactsStack}
 						options={{
-							tabBarIcon: ({ color }) => <Icon name='body' size={32} color={color} />,
+							tabBarIcon: ({ color }) => <IonIcon name='body' size={32} color={color} />,
 						}}
 					/>
 					<BottomTabs.Screen
 						name='Contacts_B'
 						component={ContactsStack}
 						options={{
-							tabBarIcon: ({ color }) => <Icon name='body' size={32} color={color} />,
+							tabBarIcon: ({ color }) => <IonIcon name='body' size={32} color={color} />,
 						}}
 					/>
 				</BottomTabs.Navigator>
@@ -89,16 +89,10 @@ const ContactsStack = () => {
 				headerRightContainerStyle: {
 					marginRight: 10,
 				},
-				headerRight: () => <GlobalLoadingIndicator />,
+				headerRight: () => <MUIcon name='account-multiple-remove' size={32} color={ColorScheme.secondary} onPress={() => null} />,
 			}}>
 			<Stack.Screen name='Contacts' component={ContactsScreen} />
 			<Stack.Screen name='Contact' component={ContactScreen} />
 		</Stack.Navigator>
 	)
-}
-
-// So you can see when data is refetching in the header across the app
-const GlobalLoadingIndicator = () => {
-	const isFetching = useIsFetching()
-	return isFetching ? <ActivityIndicator color={ColorScheme.secondary} /> : null
 }
