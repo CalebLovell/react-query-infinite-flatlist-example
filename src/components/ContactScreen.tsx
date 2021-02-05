@@ -66,7 +66,6 @@ export const ContactScreen: React.FC<{ route: any; navigation: any }> = ({ route
 				)}
 				{contact?.name && <Text style={styles.text}>{contact?.name}</Text>}
 				{contact?.company && <Text style={styles.text}>{contact?.company}</Text>}
-				{contact?.birthday && <Text style={styles.text}>{contact?.birthday}</Text>}
 				{contact?.phoneNumbers?.map(x => (
 					<Text key={x?.id} style={styles.text}>
 						{`${x?.label ? x?.label : ''}${x?.label ? ':' : ''} ${x?.number}`}
