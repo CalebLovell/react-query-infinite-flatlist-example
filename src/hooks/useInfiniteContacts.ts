@@ -7,7 +7,7 @@ import { useInfiniteQuery } from 'react-query'
 const getPaginatedContacts = async ({ pageParam = 0 }): Promise<Page> => {
 	const { data: page } = await Contacts.getContactsAsync({
 		pageOffset: pageParam,
-		pageSize: 10,
+		pageSize: 50,
 	})
 	return { page, pageParam }
 }
@@ -24,7 +24,7 @@ export const useInfiniteContacts = () => {
 				contacts: flatContacts,
 			}
 		},
-		getNextPageParam: lastPage => lastPage.pageParam + 10,
+		getNextPageParam: lastPage => lastPage.pageParam + 50,
 		onError: (error: Error) => console.log(error),
 		staleTime: 1000 * 60 * 60,
 	})
