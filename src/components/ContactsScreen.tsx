@@ -7,7 +7,6 @@ import { Contact } from './Contact'
 import { useInfiniteContacts } from '../hooks/useInfiniteContacts'
 
 export const ContactsScreen = () => {
-	// Fetch paginated Contacts
 	const { status, data, error, isLoading, refetch, fetchNextPage } = useInfiniteContacts()
 
 	return (

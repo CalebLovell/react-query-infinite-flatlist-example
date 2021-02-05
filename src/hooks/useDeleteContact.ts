@@ -1,7 +1,7 @@
 import * as Contacts from 'expo-contacts'
 
+import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { InfiniteQueryResponse, Page } from '../utils/Types'
-import { useMutation, useQueryClient } from 'react-query'
 
 const deleteContact = async (id: string) => {
 	const deletedId = await Contacts.removeContactAsync(id)
@@ -26,13 +26,11 @@ export const useDeleteContact = () => {
 					// Add the filtered array along with the unchanged pageParam to the newPageArray
 					newPageArray.push({ page: newDataArray, pageParam: contactsArray.pageParam })
 				})
-				const newContactsArray = newPageArray.flat()
 				// Updated pages without filtered value
 				// Make sure the data structure is correct
 				queryClient.setQueryData('contacts', {
 					pages: newPageArray,
 					pageParams: previousContacts.pageParams,
-					contacts: newContactsArray,
 				})
 			}
 			return { previousContacts }
