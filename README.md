@@ -11,5 +11,5 @@
 3. Run `yarn start` and open Expo Go
 4. The project should show up there and you can click to open it!
 
-## Also...
-Or if you want to see a pure JS version or test out the actual app, it's hosted [here](https://snack.expo.io/@caleblovell/phone-contacts-editor) as a Snack! You can view in on their platform, or download the Expo Go app to open it easily on your phone (without doing the above steps...)
+## Or...
+If you want to see a pure [JS version](https://github.com/CalebLovell/phone-contacts-editor) or test out the actual app, it's hosted [here](https://snack.expo.io/@caleblovell/phone-contacts-editor) as a Snack! You can view it on their platform, or download the Expo Go app to open it easily on your phone (without doing the above steps...) Note: it only works on iOS / Android - It won't work on the web (no Contacts to access).
